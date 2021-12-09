@@ -20,3 +20,11 @@
 	<button class="memo update">수정</button>
 	<button class="memo delete">삭제</button>
 </div>
+<script>
+	document.querySelector(".delete").addEventListener("click",()=>{
+		location.replace("${rootPath}/delete?m_seq=${MEMO.m_seq}")
+	})
+	document.querySelector(".update").addEventListener("click",()=>{
+		location.href = "${rootPath}/update?m_seq=${MEMO.m_seq}"
+	})
+</script>

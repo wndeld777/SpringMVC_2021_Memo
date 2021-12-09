@@ -10,9 +10,14 @@
   <select id="findById" resultType="MemoVO">
   	SELECT * FROM tbl_memo WHERE m_seq = #{m_seq}
   </select>
+  
+  <select id="getMaxMseq" resultType="Long">
+  	SELECT MAX(m_seq) AS m_seq FROM tbl_memo
+  </select>
+  
   <insert id="insert" parameterType="MemoVO">
-  INSERT INTO tbl_memo(m_seq,m_author,m_date,m_time,m_memo)
-  values(#{m_seq},#{m_author},#{m_date},#{m_time},#{m_memo})
+  INSERT INTO tbl_memo(m_seq,m_author,m_date,m_time,m_memo,m_image)
+  values(#{m_seq},#{m_author},#{m_date},#{m_time},#{m_memo},#{m_image})
   </insert>
   <update id="update" parameterType="MemoVO">
   	UPDATE tbl_memo SET
@@ -20,10 +25,12 @@
 		m_author = #{m_author},
 		m_date = #{m_date},
 		m_time = #{m_time},
-		m_memo = #{m_memo}	
+		m_memo = #{m_memo},
+		m_image = #{m_image}	
 	WHERE m_seq = #{m_seq}
   	
   </update>
+  
   <update id="create_table">
 		CREATE TABLE IF NOT EXISTS tbl_memo (
 			m_seq	BIGINT	AUTO_INCREMENT	PRIMARY KEY,

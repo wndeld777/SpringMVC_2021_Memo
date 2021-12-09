@@ -7,8 +7,10 @@ import com.wndeld777.memo.model.MemoVO;
 public interface MemoDao {
 
 	public List<MemoVO> selectAll();
-	public MemoVO findById(Integer m_seq);
+	public MemoVO findById(Long m_seq);
 	public int insert(MemoVO memoVO);
 	public int update(MemoVO memoVO);
-	public int delete(Integer m_seq);
+	public int delete(Long m_seq);
+	
+	public Long getMaxMseq();
 }

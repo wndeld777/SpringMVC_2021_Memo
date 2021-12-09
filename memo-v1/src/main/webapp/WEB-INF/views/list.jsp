@@ -16,7 +16,7 @@
 		</c:when>
 	<c:otherwise>
 		<c:forEach items="${MEMO }" var="MEMO">
-			<tr data-stnum="${MEMO.m_seq }">
+			<tr data-mnum="${MEMO.m_seq }">
 				<td>${MEMO.m_seq }</td>
 				<td>${MEMO.m_author }</td>
 				<td>${MEMO.m_memo }</td>
@@ -42,7 +42,7 @@
 			let tagName = target.tagName
 			if(tagName === "TD"){
 				let tr = target.closest("TR")
-				let mSeq = tr.dataset.mseq
+				let mSeq = tr.dataset.mnum
 				location.href="${rootPath}/detail?m_seq=" + mSeq
 			}
 		})
