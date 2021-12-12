@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="rootPath" value="${pageContext.request.contextPath }" />
-
+<link href="${rootPath}/static/css/list.css?ver=2021-12-12-001"
+	rel="stylesheet"/>
 <table class="memo_list detail">
 	<tr>
 		<th>No.</th>

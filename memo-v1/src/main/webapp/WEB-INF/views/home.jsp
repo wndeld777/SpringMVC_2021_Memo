@@ -5,6 +5,18 @@
 <html>
 <head>
 	<title>Memo</title>
+	
+	<style>
+		* {
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+		}	
+		h1{
+			margin:30px;
+			text-align: center;
+		}
+	</style>
 </head>
 <body>
 <header>
