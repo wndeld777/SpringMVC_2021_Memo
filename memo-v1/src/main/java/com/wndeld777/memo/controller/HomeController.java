@@ -1,9 +1,11 @@
 package com.wndeld777.memo.controller;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,9 +14,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.wndeld777.memo.config.QualifierConfig;
 import com.wndeld777.memo.dao.MemoDao;
 import com.wndeld777.memo.model.MemoVO;
+import com.wndeld777.memo.service.FileServiceABS;
 import com.wndeld777.memo.service.MemoService;
 
 import lombok.RequiredArgsConstructor;
@@ -27,6 +32,9 @@ public class HomeController {
 	
 	@Autowired
 	protected final MemoService memoService;
+	
+	private final List<MemoVO> memoList = new ArrayList<MemoVO>();
+	private final FileServiceABS fileService;
 
 	@RequestMapping(value = {"/",""}, method = RequestMethod.GET)
 	public String home(Model model) {
@@ -66,9 +74,16 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/insert",method = RequestMethod.POST)
-	public String insert(MemoVO memoVO,Model model) {
+	public String insert(MemoVO memoVO,Model model, @RequestParam("m_image") MultipartFile m_image) {
+		
+		Map<String, String> retFileName = fileService.fileUp(m_image);
+		memoVO = MemoVO.builder().m_image(retFileName.get(QualifierConfig.FILE_SERVICE.SAVENAME)).build();
+		memoList.add(memoVO);
+		
+		
 		memoService.insert(memoVO);
 		model.addAttribute("BODY","MEMO_INPUT");
+		model.addAttribute("IMAGES",retFileName);
 		
 		return "redirect:/";
 	}

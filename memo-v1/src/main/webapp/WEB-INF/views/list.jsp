@@ -9,6 +9,7 @@
 		<th>No.</th>
 		<th>작성자</th>
 		<th>메모내용</th>
+		<th>사진</th>
 		<tr>
 	<c:choose>
 		<c:when test="${empty MEMO }">
@@ -21,6 +22,21 @@
 				<td>${MEMO.m_seq }</td>
 				<td>${MEMO.m_author }</td>
 				<td>${MEMO.m_memo }</td>
+				<c:choose>
+				<c:when test="${not empty IMAGES }">
+				<td><img width="50px" id="m_image"
+			src="${rootPath}/files/${IMAGES.SAVENAME}"></td>
+				</c:when>
+					<c:otherwise>
+					<td>
+				<img id="to_image_thumnail"
+			src="${rootPath}/static/images/noImage.png"
+			width="30px"
+			></td>
+				</c:otherwise>
+				</c:choose>
+							
+				
 		</c:forEach>
 	</c:otherwise>
 	</c:choose>

@@ -19,20 +19,15 @@
 	padding-left:10px;
 	
 }
-
-.btn_box{
-	 width:90%;
-	margin:5px auto;
-	text-align:right;
+tr:nth-of-type(odd){
+	background-color:#eee;
 	
 }
-button{
-	padding:10px 20px;
-	outline:0;
-	border:0;
-	border-radius:5px;
+tr:nth-of-type(even){
+	background-color:#ccc;
 }
-button:hover{
-	box-shadow: 1px 1px 1px black;
+
+tr:hover{
+	background-color: #aaa;
 	cursor:pointer;
 }

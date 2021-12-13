@@ -16,6 +16,22 @@
 			margin:30px;
 			text-align: center;
 		}
+		.btn_box{
+			 width:90%;
+			margin:5px auto;
+			text-align:right;
+			
+		}
+		button{
+			padding:10px 20px;
+			outline:0;
+			border:0;
+			border-radius:5px;
+		}
+		button:hover{
+			box-shadow: 1px 1px 1px black;
+			cursor:pointer;
+		}
 	</style>
 </head>
 <body>

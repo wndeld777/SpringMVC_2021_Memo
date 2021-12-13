@@ -2,8 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="rootPath" value="${pageContext.request.contextPath }" />
+<link href="${rootPath}/static/css/input.css?ver=2021-12-12-001"
+	rel="stylesheet"/>
 
-<form id="memo_input" method="POST">
+<form id="memo_input" method="POST" enctype="multipart/form-data">
 	<fieldset>
 		<div>
 			<label>No.</label>
@@ -27,7 +29,12 @@
 		</div>
 		<div>
 			<label>이미지</label>
-			 <input name="m_image" id="m_image" placeholder="이미지를 넣으세요" value="${MEMO.m_image }"/>
+			<img id="to_image_thumnail"
+			src="${rootPath}/static/images/noImage.png"
+			width="30px"
+			>
+			 <input accept="image/*" type="file" name="m_image" id="m_image" placeholder="이미지를 넣으세요" value="${MEMO.m_image }"/>
+			 
 		</div>
 		<div class="btn_box">
 			<button type="button" class="save">저장</button>
@@ -39,6 +46,7 @@
 <script>
 	document.querySelector("button.save").addEventListener("click",(e)=>{
 		document.querySelector("form#memo_input").submit()
+		location.href="${rootPath}/file"
 		
 	})
 	document.querySelector("button.list").addEventListener("click",()=>{
