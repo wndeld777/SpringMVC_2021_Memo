@@ -14,25 +14,25 @@
 	<c:choose>
 		<c:when test="${empty MEMO }">
 			<tr>
-				<td colspan="5">데이터가 없음</td>
+				<td colspan="4">데이터가 없음</td>
 		</c:when>
 	<c:otherwise>
-		<c:forEach items="${MEMO }" var="MEMO">
-			<tr data-mnum="${MEMO.m_seq }">
-				<td>${MEMO.m_seq }</td>
-				<td>${MEMO.m_author }</td>
-				<td>${MEMO.m_memo }</td>
+		<c:forEach items="${MEMO}" var="MEMO">
+			<tr data-mnum="${MEMO.m_seq}">
+				<td>${MEMO.m_seq}</td>
+				<td>${MEMO.m_author}</td>
+				<td>${MEMO.m_memo}</td>
 				<c:choose>
 				<c:when test="${not empty IMAGES }">
 				<td><img width="50px" id="m_image"
-			src="${rootPath}/files/${IMAGES.SAVENAME}"></td>
+				src="${rootPath}/files/${IMAGES.SAVENAME}"></td>
 				</c:when>
 					<c:otherwise>
 					<td>
 				<img id="to_image_thumnail"
-			src="${rootPath}/static/images/noImage.png"
-			width="30px"
-			></td>
+				src="${rootPath}/static/images/noImage.png"
+				width="30px"
+				></td>
 				</c:otherwise>
 				</c:choose>
 							

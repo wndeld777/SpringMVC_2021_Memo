@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.wndeld777.memo.dao.FileDao">
+ 
+ 	<select id="selectAll">
+ 		SELECT * FROM tbl_files
+ 	</select>
+ 	<select id="findById">
+ 		SELECT * FROM tbl_files
+ 		WHERE f_seq = ${f_seq}
+ 	</select>
+ 	
+ 	<insert id="insert" parameterType="FileDTO">
+ 		INSERT INTO tbl_files(f_gseq,f_original,f_upname)
+ 		VALUES(#{f_gseq},#{f_original},#{f_upname})
+ 	</insert>
+ 
+ 	<insert id="insertOrUpdate" parameterType="FileDTO">
+ 		INSERT INTO tbl_files(f_seq,f_gseq,f_original,f_upname)
+ 		VALUES(#{f_seq},#{f_gseq},#{f_original},#{f_upname})
+ 		ON DUPLICATE KEY UPDATE
+ 			f_gseq = #{f_gseq},
+ 			f_original = #{f_original},
+ 			f_upname = #{f_upname}
+ 	</insert>
+ 	
+ 	<insert id="insertWithList" parameterType="FileDTO">
+ 		INSERT INTO tbl_files(f_gseq,f_original,f_upname)
+ 		VALUES
+ 		<foreach collection="filesList" item="file" separator=",">
+ 			(#{f_gseq},#{f_original},#{f_upname})
+ 		</foreach>
+ 	</insert>
+ 	
+ 	<insert id="insertOrUpdateWithList" parameterType="FileDTO">
+ 		INSERT INTO tbl_files(f_seq,f_gseq,f_original,f_upname)
+ 		VALUES
+ 		<foreach collection="filesList" item="file" separator=",">
+ 			(#{file.f_seq},#{file.f_gseq},#{file.f_original},#{file.f_upname})
+ 		</foreach>
+ 		AS NEW(f_seq,f_gseq,f_original,f_upname)
+ 		ON DUPLICATE KEY UPDATE
+ 		f_gseq = f_gseq, f_seq = f_seq, f_original = f_original, f_upname = f_upname
+ 	</insert>
+ 	
+ 	<update id="update"></update>
+ 	<delete id="delete">
+ 		DELETE FROM tbl_files
+ 		WHERE f_seq = #{f_seq}
+ 	</delete>
+ 
+ 	<update id="create_table">
+ 		CREATE TABLE IF NOT EXISTS tbl_files(
+			f_seq	BIGINT	AUTO_INCREMENT	PRIMARY KEY,
+			f_gseq	BIGINT	NOT NULL	,
+			f_original	VARCHAR(256)	NOT NULL	,
+			f_upname	VARCHAR(256)	NOT NULL,
+			CONSTRAINT FOREIGN KEY (f_seq)
+			REFERENCES tbl_memo(m_seq)
+			ON DELETE CASCADE	
+		)
+ 	</update>
+
+</mapper>

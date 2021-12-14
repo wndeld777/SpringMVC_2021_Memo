@@ -14,7 +14,9 @@
 	<logger name="com.wndeld777.memo">
 		<level value="info" />
 	</logger>
-	
+	<logger name="com.wndeld777.memo.controller">
+		<level value="info" />
+	</logger>
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">
 		<level value="info" />

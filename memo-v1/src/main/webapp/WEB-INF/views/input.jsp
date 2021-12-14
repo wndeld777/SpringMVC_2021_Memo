@@ -29,26 +29,18 @@
 		</div>
 		<div>
 			<label>이미지</label>
-			<img id="to_image_thumnail"
-			src="${rootPath}/static/images/noImage.png"
-			width="30px"
-			>
-			 <input accept="image/*" type="file" name="m_image" id="m_image" placeholder="이미지를 넣으세요" value="${MEMO.m_image }"/>
+			 <input accept="image/*" type="file" name="m_image" id="m_image" multiple="multiple" value="${MEMO.m_image }"/>
 			 
 		</div>
 		<div class="btn_box">
-			<button type="button" class="save">저장</button>
+			<button>저장</button>
 			<button type="reset" class="reset">초기화</button>
 			<button type="button" class="list">리스트로</button>
 		</div>
 	</fieldset>
 </form>
 <script>
-	document.querySelector("button.save").addEventListener("click",(e)=>{
-		document.querySelector("form#memo_input").submit()
-		location.href="${rootPath}/file"
-		
-	})
+
 	document.querySelector("button.list").addEventListener("click",()=>{
 		location.href="${rootPath}/"
 	})

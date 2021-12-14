@@ -26,8 +26,16 @@ public class MemoServiceImplV1 implements MemoService{
 	}
 	@Override
 	public Long makeMseq() {
-		Long intMseq = memoDao.getMaxMseq() + 1;
+
+		Long intMseq = 0L;
+		if(memoDao.getMaxMseq() != null) {
+			intMseq = memoDao.getMaxMseq() + 1;	
+		}
+		
+			
+		
 		return intMseq;
+		
 	}
 
 	@Override
@@ -54,7 +62,6 @@ public class MemoServiceImplV1 implements MemoService{
 		
 		return memoDao.delete(m_seq);
 	}
-
 
 	
 
