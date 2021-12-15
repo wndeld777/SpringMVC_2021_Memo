@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.wndeld777.memo.model.MemoVO;
-
+import com.wndeld777.memo.service.FileService;
 import com.wndeld777.memo.service.MemoService;
 
 import lombok.RequiredArgsConstructor;
@@ -29,6 +30,9 @@ public class HomeController {
 	
 	@Autowired
 	protected final MemoService memoService;
+	
+	@Autowired
+	protected final FileService fileService;
 
 	
 	
@@ -57,10 +61,14 @@ public class HomeController {
 		
 		Long makeInt = Long.parseLong(String.valueOf(memoService.makeMseq()));
 		
+		
+		
+		
 		memoVO = MemoVO.builder()
 							.m_date(curDate)
 							.m_time(curTime)
 							.m_seq(makeInt)
+							.m_image(memoVO.getM_image())
 							.build();
 		
 		model.addAttribute("MEMO",memoVO);
@@ -70,9 +78,11 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/insert",method = RequestMethod.POST)
-	public String insert(MemoVO memoVO){
+	public String insert(MemoVO memoVO,MultipartHttpServletRequest m_image,Model model) throws Exception{
 	
+		List<MultipartFile> files = m_image.getFiles("m_image");
 		
+		model.addAttribute("FILE",files);
 		
 		memoService.insert(memoVO);
 		log.debug("리스트{}",memoVO.toString());
