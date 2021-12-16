@@ -23,7 +23,7 @@
 				<td>${MEMO.m_author}</td>
 				<td>${MEMO.m_memo}</td>
 				<c:choose>
-				<c:when test="${not empty MEMO }">
+				<c:when test="${not empty MEMO.m_image }">
 				<td><img width="50px" id="m_image"
 				src="${rootPath}/files/${MEMO.m_image}"></td>
 				</c:when>

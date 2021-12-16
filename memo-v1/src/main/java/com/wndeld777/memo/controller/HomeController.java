@@ -5,6 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -49,8 +51,8 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/insert",method=RequestMethod.GET)
-	public String insert(Model model) {
-		MemoVO memoVO = new MemoVO();
+	public String insert(Model model,MemoVO memoVO) {
+		
 		
 		Date date = new Date(System.currentTimeMillis());
 		SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
@@ -68,6 +70,8 @@ public class HomeController {
 							.m_date(curDate)
 							.m_time(curTime)
 							.m_seq(makeInt)
+							.m_author(memoVO.getM_author())
+							.m_memo(memoVO.getM_memo())
 							.m_image(memoVO.getM_image())
 							.build();
 		
@@ -78,11 +82,8 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/insert",method = RequestMethod.POST)
-	public String insert(MemoVO memoVO,MultipartHttpServletRequest m_image,Model model) throws Exception{
-	
-		List<MultipartFile> files = m_image.getFiles("m_image");
-		
-		model.addAttribute("FILE",files);
+	public String insert(MemoVO memoVO,Model model,@RequestParam("m_image") MultipartHttpServletRequest multipart) throws Exception{
+
 		
 		memoService.insert(memoVO);
 		log.debug("리스트{}",memoVO.toString());

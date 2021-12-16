@@ -5,7 +5,7 @@
 <link href="${rootPath}/static/css/input.css?ver=2021-12-12-001"
 	rel="stylesheet"/>
 
-<form id="memo_input" method="POST" enctype="multipart/form-data">
+<form id="memo_input" method="POST" enctype="multipart/form-data" action="${rootPath}/insert">
 	<fieldset>
 		<div>
 			<label>No.</label>
@@ -29,7 +29,7 @@
 		</div>
 		<div>
 			<label>이미지</label>
-			 <input accept="image/*" type="file" name="m_image" id="m_image" multiple="multiple" value="${File.m_image }"/>
+			 <input accept="image/*" type="file" name="m_image" id="m_image" multiple="multiple" value="${MEMO.m_image }"/>
 			 
 		</div>
 		<div class="btn_box">

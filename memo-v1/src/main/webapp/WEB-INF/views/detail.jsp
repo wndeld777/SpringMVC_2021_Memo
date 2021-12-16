@@ -60,6 +60,7 @@ td, th{
 <div class="btn_box">
 	<button class="memo update">수정</button>
 	<button class="memo delete">삭제</button>
+	<button class="memo list">리스트</button>
 </div>
 <script>
 	document.querySelector(".delete").addEventListener("click",()=>{
@@ -67,5 +68,8 @@ td, th{
 	})
 	document.querySelector(".update").addEventListener("click",()=>{
 		location.href = "${rootPath}/update?m_seq=${MEMO.m_seq}"
+	})
+	document.querySelector(".list").addEventListener("click",()=>{
+		location.href = "${rootPath}/"
 	})
 </script>
