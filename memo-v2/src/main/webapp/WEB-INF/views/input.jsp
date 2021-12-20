@@ -5,7 +5,7 @@
 <link href="${rootPath}/static/css/input.css?ver=2021-12-12-001"
 	rel="stylesheet"/>
 
-<form id="memo_input" method="POST">
+<form id="memo_input" method="POST" enctype="multipart/form-data">
 	<fieldset>
 		<div>
 			<label>No.</label>
@@ -44,4 +44,5 @@
 	document.querySelector("button.list").addEventListener("click",()=>{
 		location.href="${rootPath}/"
 	})
+
 </script>
