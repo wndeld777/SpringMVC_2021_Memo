@@ -31,6 +31,12 @@
   	
   </update>
   
+  <select id="detail" resultType="MemoVO">
+  	SELECT * FROM tbl_memo
+  	WHERE m_seq = #{m_seq}
+  
+  </select>
+  
   <update id="create_table">
 		CREATE TABLE IF NOT EXISTS tbl_memo (
 			m_seq	BIGINT	AUTO_INCREMENT	PRIMARY KEY,

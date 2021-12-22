@@ -75,9 +75,6 @@ public class HomeController {
 							.m_date(curDate)
 							.m_time(curTime)
 							.m_seq(makeInt)
-							.m_author(memoVO.getM_author())
-							.m_memo(memoVO.getM_memo())
-							.m_image(memoVO.getM_image())
 							.build();
 		
 		model.addAttribute("MEMO",memoVO);
@@ -131,18 +128,16 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/update", method=RequestMethod.GET)
-	public String update(Long m_seq,Model model,MemoVO memoVO) {
+	public String update(Long m_seq,Model model) {
 		
+		MemoVO memoVO = memoService.detail(m_seq);
 
 		
-		memoVO = MemoVO.builder()
-							.m_seq(m_seq)
-							.m_author(memoVO.getM_author())
-							.m_date(curDate)
-							.m_time(curTime)
-							.m_memo(memoVO.getM_memo())
-							.m_image(memoVO.getM_image())
-							.build();
+		log.debug("이미지 정보{}",memoVO.toString());
+		
+//		memoVO = MemoVO.builder()
+//							.m_image(memoVO.getM_image())
+//							.build();
 		
 		model.addAttribute("MEMO",memoVO);
 		
@@ -152,9 +147,10 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="/update",method=RequestMethod.POST)
-	public String update(MemoVO memoVO ) {
+	public String update(MemoVO memoVO, MultipartFile m_image) {
 		
-		memoService.update(memoVO);
+		memoService.update(memoVO, m_image);
+		
 		return "redirect:/";
 		
 	}

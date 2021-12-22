@@ -54,8 +54,19 @@ td, th{
 	</tr>				
 	<tr>
 		<th>내용</th><td>${MEMO.m_memo }</td>
-		<th>사진</th><td><img width="50px" id="m_image"
-				src="${rootPath}/files/${MEMO.m_image}"></td>
+		<th>사진</th>
+		<c:choose>
+			<c:when test="${not empty MEMO.m_image}">
+				<td>
+					<img width="50px" id="m_image" src="${rootPath}/files/${MEMO.m_image}">
+				</td>
+			</c:when>
+			<c:otherwise>
+				<td>
+					<img src="${rootPath}/static/images/noImage.png" width="30px">
+				</td>
+			</c:otherwise>
+		</c:choose>
 	</tr>		
 </table>
 <div class="btn_box">

@@ -30,6 +30,9 @@
 		<div>
 			<label>이미지</label>
 			 <input accept="image/*" type="file" name="m_image" id="m_image" multiple="multiple" value="${MEMO.m_image }"/>
+			 <div>
+					<img width="100px" id="m_image" src="${rootPath}/files/${MEMO.m_image}">
+			</div>
 			 
 		</div>
 		<div class="btn_box">

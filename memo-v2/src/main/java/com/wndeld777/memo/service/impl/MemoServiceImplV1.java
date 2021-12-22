@@ -51,7 +51,7 @@ public class MemoServiceImplV1 implements MemoService{
 	}
 
 	@Override
-	public int update(MemoVO memoVO) {
+	public int update(MemoVO memoVO,MultipartFile m_image) {
 		
 		
 		return memoDao.update(memoVO);
@@ -67,6 +67,11 @@ public class MemoServiceImplV1 implements MemoService{
 	public int delete(Long m_seq) {
 		
 		return memoDao.delete(m_seq);
+	}
+	@Override
+	public MemoVO detail(Long m_seq) {
+		
+		return memoDao.detail(m_seq);
 	}
 
 

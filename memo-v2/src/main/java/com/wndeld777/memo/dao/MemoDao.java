@@ -13,6 +13,7 @@ public interface MemoDao {
 	public int update(MemoVO memoVO);
 	public int delete(Long m_seq);
 	
+	public MemoVO detail(Long m_seq);
 	public Long getMaxMseq();
 	public int create_table(Map<String,String> resultMaps);
 }
