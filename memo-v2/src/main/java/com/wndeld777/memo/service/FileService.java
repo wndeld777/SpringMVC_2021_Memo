@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.wndeld777.memo.model.FileDTO;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -44,5 +46,10 @@ public abstract class FileService {
 	public abstract Map<String, String> fileUp(MultipartFile file) ;
 	public abstract 
 		List<Map<String,String>> filesUp(MultipartHttpServletRequest files);
+	
+	public abstract List<FileDTO> selectAll();
+	public abstract int delete(Long f_seq);
+	public abstract FileDTO findById(Long f_seq);
+
 	
 }

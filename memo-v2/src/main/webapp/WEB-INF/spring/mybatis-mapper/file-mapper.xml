@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wndeld777.memo.dao.FileDao">
+
+	<select id="selectAll" resultType="FileDTO">
+		SELECT * FROM tbl_file
+	</select>
+	
+	<select id="findById" resultType="FileDTO">
+		SELECT * FROM tbl_file WHERE f_seq = #{f_seq}
+	</select>
+	
+	<delete id="delete">
+		DELETE FROM tbl_file WHERE f_seq =#{f_seq} 
+	</delete>
+
+	<update id="create_table">
+		CREATE TABLE IF NOT EXISTS tbl_file(
+			f_seq BIGINT AUTO_INCREMENT PRIMARY KEY,
+			f_original VARCHAR(125),
+			f_upName VARCHAR(125)
+		)
+	</update>
+
+</mapper>

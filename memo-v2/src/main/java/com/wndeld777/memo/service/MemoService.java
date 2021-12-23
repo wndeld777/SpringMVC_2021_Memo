@@ -13,11 +13,12 @@ public interface MemoService {
 	
 
 	public int delete(Long m_seq);
+	public int image_delete(MultipartFile m_image);
 	
 	public MemoVO detail(Long m_seq);
 	
 	public MemoVO findById(Long m_seq);
 	
 	public Long makeMseq();
-	public int update(MemoVO memoVO, MultipartFile m_image);
+	public int update(MemoVO memoVO);
 }

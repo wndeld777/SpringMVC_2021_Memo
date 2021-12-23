@@ -44,10 +44,14 @@
 			m_date	VARCHAR(10)	NOT NULL,	
 			m_time	VARCHAR(10)	NOT NULL,
 			m_memo	VARCHAR(400)	NOT NULL,
-			m_image	VARCHAR(125)
+			m_image	VARCHAR(125),
+			m_upImage VARCHAR(125)
 		)
  	</update>
   <delete id="delete">
   	DELETE FROM tbl_memo WHERE m_seq = #{m_seq}
+  </delete>
+  <delete id="image_delete">
+  	DELETE FROM tbl_memo WHERE m_image = #{m_image}
   </delete>
 </mapper>

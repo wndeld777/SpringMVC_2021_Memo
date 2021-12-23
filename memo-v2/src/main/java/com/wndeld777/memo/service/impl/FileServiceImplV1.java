@@ -2,20 +2,18 @@ package com.wndeld777.memo.service.impl;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.wndeld777.memo.config.QualifierConfig;
+import com.wndeld777.memo.dao.FileDao;
+import com.wndeld777.memo.model.FileDTO;
 import com.wndeld777.memo.service.FileService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +22,8 @@ import lombok.extern.slf4j.Slf4j;
 @Service(QualifierConfig.SERVICE.FILE_SERVICE_V1)
 public class FileServiceImplV1 extends FileService{
 
+	private FileDao fileDao;
+	
 	/***
 	 * fileUp()
 	 * 1개의 파일을 서버의 특정폴더(fileUpPath)에 업로드하기
@@ -89,6 +89,25 @@ public class FileServiceImplV1 extends FileService{
 
 	@Override
 	public List<Map<String,String>> filesUp(MultipartHttpServletRequest files) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<FileDTO> selectAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int delete(Long f_seq) {
+		// TODO Auto-generated method stub
+		
+		return 0;
+	}
+
+	@Override
+	public FileDTO findById(Long f_seq) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -1,5 +1,6 @@
 package com.wndeld777.memo.controller;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -91,17 +92,28 @@ public class HomeController {
 		Map<String,String> retFileName 
 		= fileService.fileUp(m_image);
 
-
-		MemoVO memoVO = MemoVO.builder()
-				.m_seq(m_seq)
-				.m_author(m_author)
-				.m_date(m_date)
-				.m_time(m_time)
-				.m_memo(m_memo)
-				.m_image(retFileName
-					.get(QualifierConfig
-						.FILE_SERVICE
-						.SAVENAME)).build();
+		MemoVO memoVO = new MemoVO();
+		
+		if(m_image.isEmpty()) {
+			memoVO = MemoVO.builder()
+					.m_seq(m_seq)
+					.m_author(m_author)
+					.m_date(m_date)
+					.m_time(m_time)
+					.m_memo(m_memo)
+					.build();
+		}else {
+			memoVO = MemoVO.builder()
+					.m_seq(m_seq)
+					.m_author(m_author)
+					.m_date(m_date)
+					.m_time(m_time)
+					.m_memo(m_memo)
+					.m_image(retFileName
+						.get(QualifierConfig
+							.FILE_SERVICE
+							.SAVENAME)).build();
+		}
 		memoList.add(memoVO);
 		memoService.insert(memoVO);
 		model.addAttribute("BODY","MEMO_LIST");
@@ -147,12 +159,35 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="/update",method=RequestMethod.POST)
-	public String update(MemoVO memoVO, MultipartFile m_image) {
+	public String update(Long m_seq,String m_author,String m_date,
+			String m_time,String m_memo,Model model,MemoVO memoVO,MultipartFile m_image) {
 		
-		memoService.update(memoVO, m_image);
 		
-		return "redirect:/";
 		
+		Map<String,String> retFileName 
+		= fileService.fileUp(m_image);
+		
+		memoVO = MemoVO.builder()
+				.m_seq(m_seq)
+				.m_author(m_author)
+				.m_date(m_date)
+				.m_time(m_time)
+				.m_memo(m_memo)
+				.m_image(retFileName
+					.get(QualifierConfig
+						.FILE_SERVICE
+						.SAVENAME)).build();
+		
+		
+		memoList.add(memoVO);
+		memoService.update(memoVO);
+		model.addAttribute("BODY","MEMO_LIST");
+		model.addAttribute("MEMO",memoList);
+		model.addAttribute("IMAGES",retFileName);
+		
+		return "home";
 	}
+	
+
 	
 }
