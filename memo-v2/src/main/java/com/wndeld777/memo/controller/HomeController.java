@@ -66,21 +66,14 @@ public class HomeController {
 	
 	@RequestMapping(value = "/insert",method=RequestMethod.GET)
 	public String insert(Model model,MemoVO memoVO) {
-		
-		
-	
-		
 		Long makeInt = Long.parseLong(String.valueOf(memoService.makeMseq()));		
-			
 		memoVO = MemoVO.builder()
 							.m_date(curDate)
 							.m_time(curTime)
 							.m_seq(makeInt)
 							.build();
-		
 		model.addAttribute("MEMO",memoVO);
 		model.addAttribute("BODY","MEMO_INPUT");
-		
 		return "home";
 	}
 	
@@ -88,12 +81,9 @@ public class HomeController {
 	public String insert(Long m_seq,String m_author,String m_date,
 			String m_time,String m_memo,Model model,
 			@RequestParam("m_image") MultipartFile m_image ){
-
 		Map<String,String> retFileName 
 		= fileService.fileUp(m_image);
-
 		MemoVO memoVO = new MemoVO();
-		
 		if(m_image.isEmpty()) {
 			memoVO = MemoVO.builder()
 					.m_seq(m_seq)
@@ -116,10 +106,6 @@ public class HomeController {
 		}
 		memoList.add(memoVO);
 		memoService.insert(memoVO);
-		model.addAttribute("BODY","MEMO_LIST");
-		model.addAttribute("MEMO",memoList);
-		model.addAttribute("IMAGES",retFileName);
-
 		return "redirect:/";
 	}
 	
@@ -168,7 +154,7 @@ public class HomeController {
 		= fileService.fileUp(m_image);
 		
 		memoVO = MemoVO.builder()
-				.m_seq(m_seq)
+				.m_seq(memoVO.getM_seq())
 				.m_author(m_author)
 				.m_date(m_date)
 				.m_time(m_time)
@@ -181,11 +167,8 @@ public class HomeController {
 		
 		memoList.add(memoVO);
 		memoService.update(memoVO);
-		model.addAttribute("BODY","MEMO_LIST");
-		model.addAttribute("MEMO",memoList);
-		model.addAttribute("IMAGES",retFileName);
-		
-		return "home";
+
+		return "redirect:/";
 	}
 	
 
