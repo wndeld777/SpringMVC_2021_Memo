@@ -29,7 +29,7 @@
 		</div>
 		<div>
 			<label>이미지</label>
-			 <input accept="image/*" type="file" name="m_image" id="m_image" multiple="multiple" value="${MEMO.m_image}"/>
+			 <input accept="image/*" type="file" name="m_image" id="m_image" multiple="multiple"  />
 
 			 
 		</div>
